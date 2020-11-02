@@ -1,16 +1,13 @@
-<html>
-<body>
-<head>
-        <title>wu chang is daddy</title>
-    </head>
-    <p>Hi there!</p>
-    <p>It works!</p>
+{% extends 'polls/base.html' %}
+
+{% block content %}
 {% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
+    <div class="post">
+        <div class="date">
+            <p>published: {{ post.published_date }}</p>
+        </div>
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
 {% endfor %}
-</body>
-</html>
+{% endblock %}
