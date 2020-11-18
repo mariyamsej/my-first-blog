@@ -1,13 +1,22 @@
 {% extends 'polls/base.html' %}
 
-{% block content %}
-{% for post in posts %}
-    <div class="post">
-        <div class="date">
-            <p>published: {{ post.published_date }}</p>
-        </div>
-        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
+<h1> Posts </h1>
+
+        {% block content %}
+        {% for post in posts %}
+            <div class="post">
+                <hr>
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a> - <small> <b> by:
+                    {{ post.author.username }} </b> <div class="date">
+                    <p>published: {{ post.published_date }}</p> </div>
+                        {% if user.is_authenticated %}
+                            {% if user.id == post.author.id %} <a href="{% url 'post_edit' post.pk %}"> (Edit)
+
+                            {% endif %}
+                        {% endif %}  </a> </small>
+                <p>{{ post.text|linebreaksbr }}</p>
+                <br>
+            </div>
+
 {% endfor %}
 {% endblock %}

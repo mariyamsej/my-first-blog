@@ -1,19 +1,15 @@
 {% extends 'polls/base.html' %}
-
+{% block title %} Register {% endblock %}
 {% block content %}
-{% if user.is_authenticated %}
-    <h2>New post</h2>
+    <h2>Register</h2>
 
     <div class="form-group">
 
         <form method="POST" class="post-form">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Register</button>
         </form>
     </div>
 
-{% else %}
-Sorry, u need to login :)
-{% endif %}
 {% endblock %}
